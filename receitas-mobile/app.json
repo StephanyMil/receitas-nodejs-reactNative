@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "receitasmobile",
+    // "scheme": "receitasmobile",  <-- REMOVA ESTA LINHA
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -20,11 +20,10 @@
     },
     "web": {
       "bundler": "metro",
-      "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router",
+      // "expo-router",  <-- REMOVA ESTA LINHA
       [
         "expo-splash-screen",
         {
@@ -34,9 +33,7 @@
           "backgroundColor": "#ffffff"
         }
       ]
-    ],
-    "experiments": {
-      "typedRoutes": true
-    }
+    ]
+    // "experiments": { ... }, <-- REMOVA ESTE BLOCO INTEIRO
   }
 }
