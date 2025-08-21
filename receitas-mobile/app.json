@@ -4,8 +4,6 @@
     "slug": "receitas-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    // "scheme": "receitasmobile",  <-- REMOVA ESTA LINHA
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -13,17 +11,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true
     },
     "web": {
-      "bundler": "metro",
-      "favicon": "./assets/images/favicon.png"
+      "bundler": "metro"
     },
     "plugins": [
-      // "expo-router",  <-- REMOVA ESTA LINHA
       [
         "expo-splash-screen",
         {
@@ -34,6 +29,5 @@
         }
       ]
     ]
-    // "experiments": { ... }, <-- REMOVA ESTE BLOCO INTEIRO
   }
 }
