@@ -7,6 +7,7 @@ import RegisterScreen from '../screens/RegisterScreen';
 import HomeScreen from '../screens/HomeScreen';
 import AddRecipeScreen from '../screens/AddRecipeScreen';
 import EditRecipeScreen from '../screens/EditRecipeScreen';
+import CategoryScreen from '../screens/CategoryScreen'; 
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Minhas Receitas' }} />
         <Stack.Screen name="AddRecipe" component={AddRecipeScreen} options={{ title: 'Nova Receita' }} />
         <Stack.Screen name="EditRecipe" component={EditRecipeScreen} options={{ title: 'Editar Receita' }} />
+        <Stack.Screen name="ManageCategories" component={CategoryScreen} options={{ title: 'Gerenciar Categorias' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

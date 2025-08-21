@@ -3,3 +3,4 @@ node_modules/
 # Firebase
 serviceAccountKey.json
 .env
+/uploads/
