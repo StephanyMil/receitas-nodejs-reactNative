@@ -20,31 +20,37 @@ const AddRecipeScreen = ({ navigation }) => {
   const [currentIngredientQty, setCurrentIngredientQty] = useState('');
   const [currentIngredientUnit, setCurrentIngredientUnit] = useState(MEASUREMENT_UNITS[0]);
 
-  const fetchCategories = async () => {
-    try {
-      const response = await api.get('/categories');
-      setCategories(response.data);
-      if (response.data.length > 0 && !selectedCategory) {
-        setSelectedCategory(response.data[0]._id);
-      }
-    } catch (error) { console.error("Erro ao buscar categorias:", error); }
-  };
-  
-  useEffect(() => { fetchCategories(); }, []);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await api.get('/categories');
+        setCategories(response.data);
+        if (response.data.length > 0 && !selectedCategory) {
+          setSelectedCategory(response.data[0]._id);
+        }
+      } catch (error) { console.error("Erro ao buscar categorias:", error); }
+    };
+    fetchCategories();
+  }, []);
   
   const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ImagePicker.MediaTypeOptions.Images, allowsEditing: true, aspect: [4, 3], quality: 1, });
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (permissionResult.granted === false) {
+      Alert.alert("Permissão Necessária", "Você precisa permitir o acesso à galeria de fotos!");
+      return;
+    }
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaType.Images,
+      allowsEditing: true, aspect: [4, 3], quality: 1,
+    });
     if (!result.canceled) { setImage(result.assets[0].uri); }
   };
 
   const handleAddIngredient = () => {
     if (currentIngredientName.trim() && currentIngredientQty.trim()) {
       setIngredients([...ingredients, { name: currentIngredientName, quantity: currentIngredientQty, unit: currentIngredientUnit }]);
-      setCurrentIngredientName('');
-      setCurrentIngredientQty('');
-    } else {
-      Alert.alert('Erro', 'Preencha o nome e a quantidade do ingrediente.');
-    }
+      setCurrentIngredientName(''); setCurrentIngredientQty('');
+    } else { Alert.alert('Erro', 'Preencha o nome e a quantidade do ingrediente.'); }
   };
   
   const handleRemoveIngredient = (indexToRemove) => {
@@ -52,20 +58,15 @@ const AddRecipeScreen = ({ navigation }) => {
   };
 
   const handleAddNewCategory = () => {
-    Alert.prompt(
-      "Nova Categoria",
-      "Digite o nome da nova categoria:",
+    Alert.prompt( "Nova Categoria", "Digite o nome da nova categoria:",
       async (newCategoryName) => {
         if (newCategoryName && newCategoryName.trim() !== '') {
           try {
             const response = await api.post('/categories', { name: newCategoryName.trim() });
             const newCategory = response.data;
-            setCategories([...categories, newCategory]);
+            setCategories(prevCategories => [...prevCategories, newCategory]);
             setSelectedCategory(newCategory._id);
-          } catch (error) {
-            console.error(error);
-            Alert.alert('Erro', 'Não foi possível adicionar a categoria.');
-          }
+          } catch (error) { Alert.alert('Erro', 'Não foi possível adicionar a categoria.'); }
         }
       }
     );
@@ -87,7 +88,7 @@ const AddRecipeScreen = ({ navigation }) => {
       formData.append('recipeImage', { uri: image, name: `photo.${fileType}`, type: `image/${fileType}` });
     }
     try {
-      await api.post('/recipes', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
+      await api.post('/recipes', formData);
       navigation.goBack();
     } catch (error) {
       console.error(error);
@@ -136,87 +137,19 @@ const AddRecipeScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { 
-    flex: 1, 
-    padding: 16, 
-    backgroundColor: '#f5f5f5' 
-  },
-  input: { 
-    backgroundColor: 'white', 
-    borderColor: '#ddd', 
-    borderWidth: 1, 
-    marginBottom: 15, 
-    paddingHorizontal: 15, 
-    paddingVertical: 10, 
-    borderRadius: 8 
-  },
-  textArea: { 
-    height: 150, 
-    textAlignVertical: 'top', 
-    marginTop: 15 
-  },
-  imagePreview: { 
-    width: '100%', 
-    height: 200, 
-    marginTop: 10, 
-    marginBottom: 15, 
-    borderRadius: 8 
-  },
-  categoryContainer: { 
-    borderWidth: 1, 
-    borderColor: '#ddd', 
-    borderRadius: 8, 
-    backgroundColor: 'white', 
-    marginBottom: 15 
-  },
+  container: { flex: 1, padding: 16, backgroundColor: '#f5f5f5' },
+  input: { backgroundColor: 'white', borderColor: '#ddd', borderWidth: 1, marginBottom: 15, paddingHorizontal: 15, paddingVertical: 10, borderRadius: 8 },
+  textArea: { height: 150, textAlignVertical: 'top', marginTop: 15 },
+  imagePreview: { width: '100%', height: 200, marginTop: 10, marginBottom: 15, borderRadius: 8 },
+  categoryContainer: { borderWidth: 1, borderColor: '#ddd', borderRadius: 8, backgroundColor: 'white', marginBottom: 15 },
   picker: {},
-  label: { 
-    fontSize: 18, 
-    fontWeight: 'bold', 
-    marginBottom: 10, 
-    color: '#333', 
-    borderTopColor: '#ccc', 
-    borderTopWidth: 1, 
-    paddingTop: 15, 
-    marginTop: 10 
-  },
-  ingredientInputContainer: { 
-    padding: 10, 
-    backgroundColor: '#fff', 
-    borderRadius: 8, 
-    marginBottom: 15, 
-    borderColor: '#ddd', 
-    borderWidth: 1 
-  },
-  quantityRow: { 
-    flexDirection: 'row', 
-    alignItems: 'center', 
-    marginBottom: 15 
-  },
-  quantityInput: { 
-    flex: 1, 
-    backgroundColor: 'white', 
-    padding: 10, 
-    borderRadius: 8, 
-    borderWidth: 1, 
-    borderColor: '#ddd' 
-  },
-  unitPicker: { 
-    flex: 2 
-  },
-  ingredientItem: { 
-    flexDirection: 'row', 
-    justifyContent: 'space-between', 
-    alignItems: 'center', 
-    padding: 12, 
-    backgroundColor: '#e9e9e9', 
-    borderRadius: 5, 
-    marginBottom: 5 
-  },
-  removeText: { 
-    color: 'red', 
-    fontWeight: 'bold' 
-  }
+  label: { fontSize: 18, fontWeight: 'bold', marginBottom: 10, color: '#333', borderTopColor: '#ccc', borderTopWidth: 1, paddingTop: 15, marginTop: 10 },
+  ingredientInputContainer: { padding: 10, backgroundColor: '#fff', borderRadius: 8, marginBottom: 15, borderColor: '#ddd', borderWidth: 1 },
+  quantityRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 15 },
+  quantityInput: { flex: 1, backgroundColor: 'white', padding: 10, borderRadius: 8, borderWidth: 1, borderColor: '#ddd' },
+  unitPicker: { flex: 2 },
+  ingredientItem: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 12, backgroundColor: '#e9e9e9', borderRadius: 5, marginBottom: 5 },
+  removeText: { color: 'red', fontWeight: 'bold' }
 });
 
 export default AddRecipeScreen;

@@ -1,18 +1,28 @@
 import { initializeApp } from 'firebase/app';
-import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
+import { 
+  initializeAuth, 
+  getReactNativePersistence, // Específico para Mobile
+  indexedDBLocalPersistence  // Específico para Web
+} from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getStorage } from 'firebase/storage';
+import { Platform } from 'react-native'; // 👈 Importe o Platform
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBNeIexKg_8w9cUsqJoKF3L4RlQ0UWC1WI",
-  authDomain: "receitas-80e2f.firebaseapp.com",
-  projectId: "receitas-80e2f",
-  storageBucket: "receitas-80e2f.firebasestorage.app",
-  messagingSenderId: "653430397221",
-  appId: "1:653430397221:web:4f3b661acc6f397dfaa2cc"
+  apiKey: process.env.EXPO_PUBLIC_API_KEY,
+  authDomain: process.env.EXPO_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.EXPO_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.EXPO_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.EXPO_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.EXPO_PUBLIC_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
 
-export const auth = initializeAuth(app, {
-  persistence: getReactNativePersistence(AsyncStorage)
-});
+// 👇 Lógica para escolher a persistência correta para cada plataforma
+const persistence = Platform.OS === 'web' 
+  ? indexedDBLocalPersistence // Usa IndexedDB para a web
+  : getReactNativePersistence(AsyncStorage); // Usa AsyncStorage para mobile
+
+export const auth = initializeAuth(app, { persistence });
+export const storage = getStorage(app);
