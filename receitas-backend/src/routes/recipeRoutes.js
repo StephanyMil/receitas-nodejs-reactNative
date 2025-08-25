@@ -14,6 +14,24 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+  try {
+    const recipe = await Recipe.findById(req.params.id).populate('category');
+    
+    if (!recipe) {
+      return res.status(404).json({ message: 'Receita não encontrada' });
+    }
+
+    if (recipe.user.toString() !== req.user.uid) {
+      return res.status(401).json({ message: 'Não autorizado' });
+    }
+
+    res.json(recipe);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 router.post('/', async (req, res) => {
   try {
     const { title, instructions, category, ingredients } = req.body;
