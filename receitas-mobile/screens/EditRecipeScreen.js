@@ -93,7 +93,7 @@ const EditRecipeScreen = ({ route, navigation }) => {
           <Picker selectedValue={selectedCategory} onValueChange={(itemValue) => setSelectedCategory(itemValue)} style={styles.picker}>
             {categories.map((cat) => (<Picker.Item label={cat.name} value={cat._id} key={cat._id} />))}
           </Picker>
-          <Button title="Nova Categoria" onPress={handleAddNewCategory} />
+          <Button title="Nova Categoria" onPress={handleAddNewCategory} color="#f4511e" />
         </View>
         
         <Text style={styles.label}>Ingredientes</Text>
@@ -105,7 +105,7 @@ const EditRecipeScreen = ({ route, navigation }) => {
               {MEASUREMENT_UNITS.map((unit) => (<Picker.Item label={unit} value={unit} key={unit} />))}
             </Picker>
           </View>
-          <Button title="Adicionar Ingrediente" onPress={handleAddIngredient} />
+          <Button title="Adicionar Ingrediente" onPress={handleAddIngredient} color="#841584" />
         </View>
 
         {ingredients.map((ing, index) => (
@@ -118,7 +118,7 @@ const EditRecipeScreen = ({ route, navigation }) => {
         ))}
 
         <TextInput placeholder="Modo de Preparo" value={instructions} onChangeText={setInstructions} style={[styles.input, styles.textArea]} multiline />
-        <Button title="Salvar Alterações" onPress={handleUpdateRecipe} color="#f4511e" />
+        <Button title="Salvar Alterações" onPress={handleUpdateRecipe} color="#841584" />
       </ScrollView>
       <AddCategoryModal 
         visible={isModalVisible}

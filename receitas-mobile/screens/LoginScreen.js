@@ -26,7 +26,7 @@ const LoginScreen = ({ navigation }) => {
       <Text style={styles.title}>Bem-vindo!</Text>
       <TextInput placeholder="Email" value={email} onChangeText={setEmail} style={styles.input} keyboardType="email-address" autoCapitalize="none" />
       <TextInput placeholder="Senha" value={password} onChangeText={setPassword} secureTextEntry style={styles.input} />
-      <Button title="Login" onPress={handleLogin} />
+      <Button title="Login" onPress={handleLogin} color="#f4511e" />
       <View style={styles.separator} />
       <Button title="Não tem uma conta? Registrar" onPress={() => navigation.navigate('Register')} color="#841584" />
     </View>
