@@ -1,50 +1,55 @@
-# Welcome to your Expo app 👋
+# 📱 Mobile (React Native)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Este é o aplicativo mobile para iOS e Android, construído com React Native e Expo.
 
-## Get started
+## Pré-requisitos do Mobile
+- **Node.js** (versão LTS)
+- **Expo CLI** (`npm install -g expo-cli`)
+- **App Expo Go** instalado no seu smartphone.
 
-1. Install dependencies
+## ⚙️ Configuração do Mobile
 
-   ```bash
-   npm install
-   ```
+**1. Variáveis de Ambiente (`.env`)**
+1.  Navegue até a pasta `receitas-mobile`.
+2.  Crie uma cópia do arquivo `.env.example` e renomeie-a para `.env`.
+3.  Preencha as variáveis no `.env` com as chaves do seu projeto Firebase.
 
-2. Start the app
+    > Você pode encontrar essas chaves no **Console do Firebase** -> **Configurações do Projeto** (⚙️) -> **Geral** -> Role para baixo até "Seus apps" e selecione seu app da web.
 
-   ```bash
-   npx expo start
-   ```
+### `/receitas-mobile/.env.example`
+```env
+EXPO_PUBLIC_API_KEY="SUA_CHAVE_API"
+EXPO_PUBLIC_AUTH_DOMAIN="SEU_AUTH_DOMAIN"
+EXPO_PUBLIC_PROJECT_ID="SEU_ID_DE_PROJETO"
+EXPO_PUBLIC_STORAGE_BUCKET="SEU_STORAGE_BUCKET"
+EXPO_PUBLIC_MESSAGING_SENDER_ID="SEU_MESSAGING_SENDER_ID"
+EXPO_PUBLIC_APP_ID="SEU_APP_ID"
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+# URL para se conectar ao seu backend local
+EXPO_PUBLIC_API_URL="http://SEU_IP_LOCAL:3000/api"
 ```
+- `EXPO_PUBLIC_API_URL`: Substitua `SEU_IP_LOCAL` pelo endereço IPv4 do seu computador na sua rede Wi-Fi. (No Windows, use `ipconfig`; no macOS/Linux, use `ifconfig` ou `ip addr`).
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🚀 Instalação e Execução do Mobile
 
-## Learn more
+1.  **Instale as dependências:**
+    ```bash
+    cd receitas-mobile
+    npm install
+    ```
 
-To learn more about developing your project with Expo, look at the following resources:
+2.  **Sincronize as versões das dependências do Expo (boa prática):**
+    ```bash
+    npx expo install --fix
+    ```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+3.  **Garanta que o servidor backend (`receitas-backend`) já esteja rodando.**
 
-## Join the community
+4.  **Inicie o servidor de desenvolvimento do Expo:**
+    ```bash
+    npx expo start --clear
+    ```
 
-Join our community of developers creating universal apps.
+5.  Escaneie o QR Code que aparecer no terminal com o aplicativo **Expo Go** no seu celular.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+> **Atenção:** Seu computador e seu celular devem estar conectados na **mesma rede Wi-Fi**.

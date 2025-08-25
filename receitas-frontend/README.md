@@ -1,12 +1,47 @@
-# React + Vite
+# 🖥️ Frontend (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esta é a interface web para a aplicação, construída com React e Vite.
 
-Currently, two official plugins are available:
+## Pré-requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Node.js** (versão LTS)
 
-## Expanding the ESLint configuration
+## ⚙️ Configuração
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Variáveis de Ambiente (`.env`)
+1.  Crie uma cópia do arquivo `.env.example` e renomeie-a para `.env`.
+2.  Preencha as variáveis com as chaves do seu projeto Firebase.
+
+    > Você pode encontrar essas chaves no **Console do Firebase** -> **Configurações do Projeto** (⚙️) -> **Geral** -> Role para baixo até "Seus apps" e selecione seu app da web.
+
+#### `/.env.example`
+```env
+# URL para se conectar ao seu backend local
+VITE_API_URL="http://localhost:3000/api"
+
+# Chaves do Firebase para o cliente web
+VITE_FIREBASE_API_KEY="SUA_CHAVE_API"
+VITE_FIREBASE_AUTH_DOMAIN="SEU_AUTH_DOMAIN"
+VITE_FIREBASE_PROJECT_ID="SEU_ID_DE_PROJETO"
+VITE_FIREBASE_STORAGE_BUCKET="SEU_STORAGE_BUCKET"
+VITE_FIREBASE_MESSAGING_SENDER_ID="SEU_MESSAGING_SENDER_ID"
+VITE_FIREBASE_APP_ID="SEU_APP_ID"
+```
+
+`VITE_API_URL`: Para desenvolvimento local, `http://localhost:3000/api` é o valor correto.
+
+## 🚀 Instalação e Execução
+
+Instale as dependências:
+```bash
+npm install
+```
+
+Garanta que o servidor backend (`receitas-backend`) já esteja rodando.
+
+Inicie o servidor de desenvolvimento do Vite:
+```bash
+npm run dev
+```
+
+O site estará disponível no endereço que aparecer no seu terminal (geralmente `http://localhost:5173`).
