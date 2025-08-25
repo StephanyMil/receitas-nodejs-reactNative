@@ -3,11 +3,18 @@ import { View, TextInput, Button, StyleSheet, Alert, Text, ScrollView, Touchable
 import api from '../api/api';
 import { Picker } from '@react-native-picker/picker';
 import AddCategoryModal from '../components/AddCategoryModal';
+import PropTypes from 'prop-types';
 
 const MEASUREMENT_UNITS = [
   'g (gramas)', 'kg (quilos)', 'ml (mililitros)', 'L (litros)', 'xícara(s)', 'colher(es) de sopa',
   'colher(es) de chá', 'unidade(s)', 'a gosto', 'pitada(s)', 'dente(s)', 'fatia(s)',
 ];
+
+AddRecipeScreen.propTypes = {
+  navigation: PropTypes.shape({
+    goBack: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 const AddRecipeScreen = ({ navigation }) => {
   const [title, setTitle] = useState('');
@@ -31,7 +38,7 @@ const AddRecipeScreen = ({ navigation }) => {
       } catch (error) { console.error("Erro ao buscar categorias:", error); }
     };
     fetchCategories();
-  }, []);
+  }, [selectedCategory]);
   
   const handleAddIngredient = () => {
     if (currentIngredientName.trim() && currentIngredientQty.trim()) {
@@ -59,6 +66,7 @@ const AddRecipeScreen = ({ navigation }) => {
       setSelectedCategory(newCategory._id);
       setIsModalVisible(false);
     } catch (error) {
+      console.error("Erro ao adicionar categoria:", error);
       Alert.alert('Erro', 'Não foi possível adicionar a categoria. Ela já pode existir.');
     }
   };
