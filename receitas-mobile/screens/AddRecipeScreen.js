@@ -96,7 +96,7 @@ const AddRecipeScreen = ({ navigation }) => {
           <Picker selectedValue={selectedCategory} onValueChange={(itemValue) => setSelectedCategory(itemValue)} style={styles.picker}>
             {categories.map((cat) => (<Picker.Item label={cat.name} value={cat._id} key={cat._id} />))}
           </Picker>
-          <Button title="Nova Categoria" onPress={handleAddNewCategory} color="#f4511e" />
+          <Button title="Nova Categoria" onPress={handleAddNewCategory} color="#841584" />
         </View>
         
         <Text style={styles.label}>Ingredientes</Text>
@@ -121,7 +121,7 @@ const AddRecipeScreen = ({ navigation }) => {
         ))}
 
         <TextInput placeholder="Modo de Preparo" value={instructions} onChangeText={setInstructions} style={[styles.input, styles.textArea]} multiline />
-        <Button title="Salvar Receita" onPress={handleAddRecipe} color="#841584" />
+        <Button title="Salvar Receita" onPress={handleAddRecipe} color="#f4511e" />
       </ScrollView>
       <AddCategoryModal 
         visible={isModalVisible}
