@@ -1,0 +1,92 @@
+.recipe-card {
+  background-color: var(--light-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 1rem 1.5rem;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.recipe-title {
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 1.25rem;
+}
+
+.category-badge {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.card-body {
+  padding: 1.5rem;
+  flex-grow: 1;
+}
+
+.card-body h4 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark-color);
+}
+
+.card-body h4:first-child {
+  margin-top: 0;
+}
+
+.ingredients-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.ingredients-list li {
+  margin-bottom: 0.25rem;
+}
+
+.instructions {
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+.card-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  background-color: #f7f7f7;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.card-button {
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  color: var(--light-color);
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.edit-button {
+  background-color: var(--secondary-color);
+}
+
+.delete-button {
+  background-color: #e74c3c;
+}

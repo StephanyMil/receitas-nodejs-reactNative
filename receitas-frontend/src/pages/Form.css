@@ -1,0 +1,106 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+}
+
+.form-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.form-box.large {
+  max-width: 800px;
+}
+
+.form-box h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: bold;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 1.5rem;
+}
+
+.form-link {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.ingredient-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: var(--grey-color);
+  border-radius: var(--border-radius);
+  margin-bottom: 0.5rem;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.ingredient-inputs {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.add-ingredient-btn {
+  width: 100%;
+  padding: 0.6rem;
+  background-color: #e0e0e0;
+  color: var(--dark-color);
+}
+
+.category-select-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.category-select-group select {
+  flex-grow: 1;
+}
+.add-category-btn {
+  padding: 0.75rem;
+  min-width: 44px;
+  background-color: var(--secondary-color);
+}
