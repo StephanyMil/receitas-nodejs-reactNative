@@ -99,18 +99,12 @@ const styles = StyleSheet.create({
   bottomButtonContainer: {
     position: 'absolute',
     bottom: 0,
-    left: 0,
-    right: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 10,
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
-    borderTopColor: '#ccc',
-    borderTopWidth: 1,
+    left: 20,
+    right: 20,
+    paddingVertical: 10,
   },
   buttonWrapper: {
-    flex: 1,
-    marginHorizontal: 5,
+    marginBottom: 10,
   },
   logoutButton: {
     marginRight: 15,
