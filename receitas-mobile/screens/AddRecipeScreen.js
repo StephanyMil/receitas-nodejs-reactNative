@@ -10,12 +10,6 @@ const MEASUREMENT_UNITS = [
   'colher(es) de chá', 'unidade(s)', 'a gosto', 'pitada(s)', 'dente(s)', 'fatia(s)',
 ];
 
-AddRecipeScreen.propTypes = {
-  navigation: PropTypes.shape({
-    goBack: PropTypes.func.isRequired,
-  }).isRequired,
-};
-
 const AddRecipeScreen = ({ navigation }) => {
   const [title, setTitle] = useState('');
   const [instructions, setInstructions] = useState('');
@@ -136,6 +130,12 @@ const AddRecipeScreen = ({ navigation }) => {
       />
     </>
   );
+};
+
+AddRecipeScreen.propTypes = {
+  navigation: PropTypes.shape({
+    goBack: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 const styles = StyleSheet.create({
