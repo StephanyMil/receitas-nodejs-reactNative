@@ -15,7 +15,7 @@ const Register = () => {
     setError('');
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate('/'); // Redireciona para a Home após o registro
+      navigate('/');
     } catch (err) {
       if (err.code === 'auth/email-already-in-use') {
         setError('Este e-mail já está em uso.');
